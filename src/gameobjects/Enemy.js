@@ -19,6 +19,7 @@ export default class extends Actor{
         // Set stats
         this.scanRange = opts.scanRange || 200
         this.fleeThreshold = opts.fleeThreshold || 0.5 // Below this percentage of health, the enemy will flee
+        this.speed = opts.speed || 150
 
         // Set initial state
         this.state = 'idle'
@@ -30,25 +31,43 @@ export default class extends Actor{
     update(){
         super.update()
 
+        // 1 = right, -1 = left
+        const playerDir = this.player.x - this.x > 0 ? 1 : -1
+
         switch( this.state ){
 
         case 'idle':
             // Look for player
             if( Math.abs( this.player.x - this.x ) < this.scanRange ){
                 if( this.health.getPercent() >= this.fleeThreshold ){
-                    return 'pursuing'
+                    this.state = 'pursuing'
                 } else {
-                    return 'fleeing'
+                    this.state = 'fleeing'
                 }
             }
             break
 
         case 'pursuing':
-            console.log('pursuing!')
+            // Move toward player
+            this.body.velocity.x = this.speed * playerDir
+            // Check if we should flee
+            if( this.health.getPercent() < this.fleeThreshold ){
+                this.state = 'fleeing'
+            }
+            // Try to fire weapon
+            this.currentWeapon.fire( playerDir )
             break
 
         case 'fleeing':
-            console.log('fleeing!')
+            this.body.velocity.x = this.speed * playerDir * -1
+            // Check if we should pursue
+            if( this.health.getPercent() > this.fleeThreshold ){
+                this.state = 'pursuing'
+            }
+            // Check if we should stop running
+            if( Math.abs( this.player.x - this.x ) >= this.scanRange ){
+                this.state = 'idle'
+            }
             break
 
         }

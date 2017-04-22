@@ -48,9 +48,10 @@ export default class extends Phaser.State{
         this.player.giveWeapon( new Weapon( this.bullets ) )
 
         // Add enemy
-        this.actors.add( new Enemy( this.game, 300, 0, 'enemy', null, {
+        const enemy = this.actors.add( new Enemy( this.game, 300, 0, 'enemy', null, {
             pickupGroup: this.pickups
         } ) )
+        enemy.giveWeapon( new Weapon( this.bullets ) )
 
         // Set up text display
         // this.game.add.existing( new TextDisplay( this.game, "test!" ) )

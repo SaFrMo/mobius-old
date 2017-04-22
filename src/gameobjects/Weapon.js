@@ -10,22 +10,29 @@ export default class {
         this.stats = weaponType || this.STANDARD
         this.bulletGroup = bulletGroup
         this.game = this.bulletGroup.game
+        this.lastFire = 0
 
     }
 
-    fire(){
+    fire( dir = 1 ){
+        if( this.game.time.now - this.lastFire < this.stats.time ) return
 
         this.bulletGroup.add(
             new Bullet(
                 this.game,
-                this.stats,
-                this.owner,
                 this.owner.x + this.owner.width / 2,
                 this.owner.y,
-                'bullet'
+                'bullet',
+                null,
+                {
+                    stats: this.stats,
+                    owner: this.owner,
+                    dir: dir
+                }
             )
         )
 
+        this.lastFire = this.game.time.now
     }
 
 }

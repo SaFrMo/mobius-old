@@ -2,15 +2,15 @@ import Phaser from 'phaser'
 
 export default class extends Phaser.Sprite{
 
-    constructor( game, stats, owner, x, y, key, frame ){
+    constructor( game, x, y, key, frame, opts = {} ){
 
         super( game, x, y, key, frame )
 
         // Save stats
-        this.stats = stats
+        this.stats = opts.stats
 
         // Save owner
-        this.owner = owner
+        this.owner = opts.owner
 
         // Enable bullet physics
         this.game.physics.enable( this, Phaser.Physics.ARCADE )
@@ -27,7 +27,7 @@ export default class extends Phaser.Sprite{
             this.body.gravity.y = this.stats.gravity
         }
 
-        this.body.velocity.x = this.stats.speed
+        this.body.velocity.x = this.stats.speed * opts.dir
 
     }
 

@@ -21,7 +21,7 @@ export default class extends Actor{
         this.toggleButton.onUp.add( function(){ this.health.toggle() }, this )
 
         // Fire weapon
-        this.fireButton.onUp.add( function(){ this.currentWeapon.fire() }, this )
+        this.fireButton.onUp.add( function(){ this.currentWeapon.fire( this.direction ) }, this )
 
         // Add supplies readout
         this.suppliesBg = this.game.add.graphics( 0, 0 )
@@ -33,8 +33,7 @@ export default class extends Actor{
         }
         this.suppliesText = this.game.add.text( 10, 10, '$0', this.suppliesStyle )
 
-        // Special reference name
-        this.name = 'Player'
+        this.direction = 1
 
     }
 
@@ -50,8 +49,10 @@ export default class extends Actor{
         // horizontal movement
         if( this.cursors.left.isDown ){
             this.body.velocity.x = -this.xSpeed
+            this.direction = -1
         } else if ( this.cursors.right.isDown ){
             this.body.velocity.x = this.xSpeed
+            this.direction = 1
         } else {
             this.body.velocity.x = 0
         }
