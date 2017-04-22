@@ -7,6 +7,9 @@ export default class extends Actor{
 
         // Remove health regen
         this.health.stasis = true
+
+        // Change health bar
+        this.health.healthBar.tint = 0xcc0000
     }
 
 }
