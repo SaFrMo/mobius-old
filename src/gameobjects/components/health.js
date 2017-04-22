@@ -5,7 +5,7 @@ export default class {
         this.regen = regen || 25
         this.pause = pause || 1000
         this.current = this.starting
-        this.stasis = true
+        this.stasis = false
         this.switchTime = 1000
         this.switchCountdown = 0
 

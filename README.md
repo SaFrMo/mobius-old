@@ -13,8 +13,7 @@ Players will need to acquire materials and use them in simple Minecraft-style re
 ## Roadmap
 1. ~~Platforming physics~~
 1. Info presentation
-    1. Health system and health bar
-    1. Inventory system
+    1. ~~Health system and health bar~~
     1. Arbitrary text display
 1. Basic Combat
 1. Regroup
