@@ -2,29 +2,30 @@ import Phaser from 'phaser'
 
 export default class extends Phaser.Sprite{
 
-    constructor( game, x, y, key, frame ){
-        super( game, x, y, key, frame )
-
-        this.style = {
-            font: 'bold 60pt Arial',
-            fill: 'white',
-            align: 'left',
-            wordWrap: true,
-            wordWrapWidth: 450
-        }
+    constructor( game, content ){
+        super( game )
 
         // Box dimensions
         this.padding = 20
         this.margin = 10
-        this.height = 20
+        this.boxHeight = 100
 
         // Background
-        this.bg = this.addChild( this.game.make.sprite( 0, 0, 'white' ) )
-        this.bg.tint = 0x222222
-        this.bg.width = this.game.stage.width - this.margin * 2
-        this.bg.height = this.height
-        this.bg.x = this.margin
-        this.bg.y = this.game.stage.height
+        this.bg = this.game.add.graphics( 0, 0 )
+        this.bg.beginFill( 0x222222 )
+        this.bg.drawRect( this.margin, this.margin, this.game.width - this.margin * 2, this.boxHeight )
+
+        // Text style
+        this.style = {
+            font: 'bold 12pt Arial',
+            fill: 'white',
+            align: 'left',
+            wordWrap: true,
+            wordWrapWidth: this.game.width - this.margin * 2 - this.padding * 2
+        }
+        this.content = content
+        // Text
+        this.text = this.game.add.text( this.margin + this.padding, this.margin + this.padding, this.content, this.style )
     }
 
 }

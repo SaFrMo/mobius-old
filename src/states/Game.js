@@ -1,7 +1,7 @@
 import Phaser from 'phaser'
 import Player from '../gameobjects/Player'
 import Enemy from '../gameobjects/Enemy'
-// import TextDisplay from '../gameobjects/TextDisplay'
+import TextDisplay from '../gameobjects/TextDisplay'
 import collision from '../actions/collision'
 import Weapon from '../gameobjects/Weapon'
 
@@ -38,7 +38,7 @@ export default class extends Phaser.State{
         this.actors.add( new Enemy( this.game, 300, 0, 'enemy' ) )
 
         // Set up text display
-        // this.game.add.existing( new TextDisplay( this.game ) )
+        this.game.add.existing( new TextDisplay( this.game, "It's everybody's favorite summer pastime - everyone say hello to PLANET MOBIUS!" ) )
 
         // Set up platformer physics
         this.game.physics.startSystem( Phaser.Physics.ARCADE )
