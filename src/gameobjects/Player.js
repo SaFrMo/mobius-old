@@ -23,7 +23,8 @@ export default class extends Phaser.Sprite{
         this.jump = -250
 
         // Set health
-        this.health = new Health()
+        this.health = new Health( this )
+        this.health.change(-50)
 
     }
 
