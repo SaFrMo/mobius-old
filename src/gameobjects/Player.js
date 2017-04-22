@@ -3,9 +3,9 @@ import Phaser from 'phaser'
 
 export default class extends Actor{
 
-    constructor( game, x, y, key, weapon, frame ){
+    constructor( game, x, y, key, frame, weapon, pickupGroup ){
 
-        super( game, x, y, key, frame )
+        super( game, x, y, key, null, pickupGroup )
 
         this.currentWeapon = weapon
 

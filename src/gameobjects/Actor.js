@@ -1,8 +1,9 @@
 import Phaser from 'phaser'
 import Health from './components/health'
+import Pickup from './Pickup'
 
 export default class extends Phaser.Sprite{
-    constructor( game, x, y, key, frame ){
+    constructor( game, x, y, key, frame, pickupGroup ){
         super( game, x, y, key, frame )
 
         // Enable player physics
@@ -12,16 +13,23 @@ export default class extends Phaser.Sprite{
         this.body.collideWorldBounds = true
         this.body.setSize( 64, 64 )
 
-        // Set health
+        // Set health and supplies
         this.health = new Health( this )
+        this.supplies = 0
+
+        // Save pickup group
+        this.pickupGroup = pickupGroup
     }
 
     die(){
-        // TODO: Drops, XP
+        if( this.pickupGroup ){
+            this.pickupGroup.add( new Pickup( this ) )
+        }
         this.kill()
     }
 
     update(){
+        if( !this.alive ) return
         this.health.update()
         if( this.health.current <= 0 ){
             this.die()

@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
 import Player from '../gameobjects/Player'
 import Enemy from '../gameobjects/Enemy'
-import TextDisplay from '../gameobjects/TextDisplay'
-import collision from '../actions/collision'
+// import TextDisplay from '../gameobjects/TextDisplay'
+import collideActions from '../actions/collision'
 import Weapon from '../gameobjects/Weapon'
 
 export default class extends Phaser.State{
@@ -14,7 +14,7 @@ export default class extends Phaser.State{
         // Set up environment
         this.map = this.game.add.tilemap( 'map' )
         this.map.addTilesetImage( 'ground_1x1' )
-        this.map.setCollisionBetween( 1, 2 )
+        this.map.setCollisionBetween( 0, 12 )
         this.blocking = this.map.createLayer( 'Blocks' )
         this.blocking.resizeWorld()
 
@@ -28,17 +28,29 @@ export default class extends Phaser.State{
         this.bullets.enableBody = true
         this.bullets.physicsBodyType = Phaser.Physics.ARCADE
 
+        // Set up pickups
+        this.pickups = this.game.add.group()
+        this.pickups.enableBody = true
+        this.pickups.physicsBodyType = Phaser.Physics.ARCADE
+
         // Set up player
         this.player = this.actors.add(
-            new Player( this.game, 0, 0, 'player', new Weapon( this.bullets ) )
+            new Player(
+                this.game,
+                0, 0,
+                'player',
+                null,
+                new Weapon( this.bullets ),
+                this.pickups
+            )
         )
         this.player.currentWeapon.owner = this.player
 
         // Add enemy
-        this.actors.add( new Enemy( this.game, 300, 0, 'enemy' ) )
+        this.actors.add( new Enemy( this.game, 300, 0, 'enemy', null, this.pickups ) )
 
         // Set up text display
-        this.game.add.existing( new TextDisplay( this.game, "test!" ) )
+        // this.game.add.existing( new TextDisplay( this.game, "test!" ) )
 
         // Set up platformer physics
         this.game.physics.startSystem( Phaser.Physics.ARCADE )
@@ -51,6 +63,9 @@ export default class extends Phaser.State{
         this.game.physics.arcade.collide( this.player, this.blocking )
 
         // Register bullet collision
-        this.game.physics.arcade.overlap( this.bullets, this.actors, collision, null, this )
+        this.game.physics.arcade.overlap( this.bullets, this.actors, collideActions.bulletHit, null, this )
+
+        // Pickup overlap
+        this.game.physics.arcade.overlap( this.pickups, this.actors, collideActions.pickup, null, this )
     }
 }

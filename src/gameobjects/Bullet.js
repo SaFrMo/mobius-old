@@ -15,8 +15,11 @@ export default class extends Phaser.Sprite{
         // Enable bullet physics
         this.game.physics.enable( this, Phaser.Physics.ARCADE )
 
+        // Kill out of frame
+        this.checkWorldBounds = true
+        this.outOfBoundsKill = true
+
         // Bullet specifics
-        this.body.collideWorldBounds = true
         this.body.setSize( 32, 32 )
         if( !this.stats.hasOwnProperty( 'gravity' ) ){
             this.body.allowGravity = false
