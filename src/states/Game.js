@@ -4,6 +4,7 @@ import Enemy from '../gameobjects/Enemy'
 // import TextDisplay from '../gameobjects/TextDisplay'
 import collideActions from '../actions/collision'
 import Weapon from '../gameobjects/Weapon'
+import Shop from '../gameobjects/shop/Shop'
 
 export default class extends Phaser.State{
     init(){}
@@ -59,6 +60,9 @@ export default class extends Phaser.State{
         // Set up platformer physics
         this.game.physics.startSystem( Phaser.Physics.ARCADE )
         this.game.physics.arcade.gravity.y = 500
+
+        // Create shop
+        this.shop = this.game.add.existing( new Shop( this.game ) )
 
     }
 
