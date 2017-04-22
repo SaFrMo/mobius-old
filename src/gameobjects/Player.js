@@ -13,6 +13,31 @@ export default class extends Phaser.Sprite {
         this.body.collideWorldBounds = true
         this.body.setSize(64, 64)
 
+        // Add controls
+        this.cursors = this.game.input.keyboard.createCursorKeys()
+        this.jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+
+        // Set movement params
+        this.xSpeed = 350
+        this.jump = -250
+    }
+
+    update(){
+
+        // horizontal movement
+        if( this.cursors.left.isDown ){
+            this.body.velocity.x = -this.xSpeed
+        } else if( this.cursors.right.isDown ){
+            this.body.velocity.x = this.xSpeed
+        } else {
+            this.body.velocity.x = 0
+        }
+
+        // jump
+        if ( this.jumpButton.isDown &&
+            this.body.onFloor() ){
+            this.body.velocity.y = this.jump;
+        }
 
     }
 
