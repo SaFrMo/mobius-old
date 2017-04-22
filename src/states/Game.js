@@ -38,7 +38,7 @@ export default class extends Phaser.State{
         this.actors.add( new Enemy( this.game, 300, 0, 'enemy' ) )
 
         // Set up text display
-        this.game.add.existing( new TextDisplay( this.game, "It's everybody's favorite summer pastime - everyone say hello to PLANET MOBIUS!" ) )
+        this.game.add.existing( new TextDisplay( this.game, "test!" ) )
 
         // Set up platformer physics
         this.game.physics.startSystem( Phaser.Physics.ARCADE )

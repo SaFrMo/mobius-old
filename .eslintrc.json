@@ -10,6 +10,7 @@
         "space-before-blocks"           : ["error", "never"],
         "space-before-function-paren"   : ["error", "never"],
         "padded-blocks"                 : "off",
-        "keyword-spacing"               : "off"
+        "keyword-spacing"               : "off",
+        "quotes"                        : "off"
     }
 }
