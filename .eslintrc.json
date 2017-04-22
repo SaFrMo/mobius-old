@@ -1,7 +1,15 @@
 {
-  "extends": "standard",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module"
-  }
+    "extends": "standard",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent"                        : ["error", 4],
+        "space-in-parens"               : ["error", "always"],
+        "space-before-blocks"           : ["error", "never"],
+        "space-before-function-paren"   : ["error", "never"],
+        "padded-blocks"                 : "off",
+        "keyword-spacing"               : "off"
+    }
 }
