@@ -18,7 +18,9 @@ Players will need to acquire materials and use them in simple Minecraft-style re
 1. ~~Basic Combat~~
 1. ~~Regroup~~
 1. ~~Currency Pickups~~
-1. Mook AI
+1. ~~Mook AI~~
 1. Shop
 1. ~~Basic Plot~~
 1. Regroup
+1. Increase game area width past screen
+1. Flip player (and gravity) when looping around screen
