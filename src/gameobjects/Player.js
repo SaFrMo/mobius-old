@@ -33,6 +33,9 @@ export default class extends Actor{
         }
         this.suppliesText = this.game.add.text( 10, 10, '$0', this.suppliesStyle )
 
+        // Special reference name
+        this.name = 'Player'
+
     }
 
     changeSupplies( amount ){
