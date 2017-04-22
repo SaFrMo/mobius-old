@@ -14,7 +14,7 @@ export default class extends Phaser.Sprite{
         this.body.setSize( 32, 32 )
 
         // Pop up
-        this.body.velocity.y = -350
+        this.body.velocity.y = -300
 
     }
 

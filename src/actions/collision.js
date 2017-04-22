@@ -14,7 +14,7 @@ export default {
     pickup: ( picked, picker ) => {
 
         if( picked.spawner !== picker ){
-            picker.supplies += picked.supplies
+            picker.changeSupplies( picked.supplies )
             picked.kill()
         }
 

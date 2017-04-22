@@ -17,8 +17,8 @@ Players will need to acquire materials and use them in simple Minecraft-style re
     1. ~~Arbitrary text display~~
 1. ~~Basic Combat~~
 1. ~~Regroup~~
-1. Currency Pickups
+1. ~~Currency Pickups~~
 1. Mook AI
 1. Shop
-1. Basic Plot
+1. ~~Basic Plot~~
 1. Regroup

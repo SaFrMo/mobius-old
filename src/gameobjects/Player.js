@@ -25,6 +25,21 @@ export default class extends Actor{
         // Fire weapon
         this.fireButton.onUp.add( function(){ this.currentWeapon.fire() }, this )
 
+        // Add supplies readout
+        this.suppliesBg = this.game.add.graphics( 0, 0 )
+        this.suppliesBg.beginFill( 0x00cc00, 0.4 )
+        this.suppliesBg.drawRect( 0, 0, 100, 45 )
+        this.suppliesStyle = {
+            font: 'bold 12pt Arial',
+            fill: 'black'
+        }
+        this.suppliesText = this.game.add.text( 10, 10, '$0', this.suppliesStyle )
+
+    }
+
+    changeSupplies( amount ){
+        this.supplies += amount
+        this.suppliesText.text = '$' + this.supplies
     }
 
     update(){
