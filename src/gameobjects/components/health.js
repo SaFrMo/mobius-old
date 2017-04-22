@@ -5,7 +5,9 @@ export default class {
         this.regen = regen || 25
         this.pause = pause || 1000
         this.current = this.starting
-        this.stasis = false
+        this.stasis = true
+        this.switchTime = 1000
+        this.switchCountdown = 0
 
         // Health UI
         this.healthBg = this.host.addChild( this.host.game.make.sprite( 0, -25, 'white' ) )
@@ -29,9 +31,28 @@ export default class {
         this.healthBar.width = this.host.width * this.getPercent()
     }
 
+    toggle(){
+        const targetState = !this.stasis
+        if( targetState ){
+            // Transitioning to stasis has no delay
+            this.stasis = !this.stasis
+            this.switchCountdown = -1
+        } else {
+            // Start countdown to regen state
+            this.switchCountdown = this.switchCountdown > 0 ? -1 : this.switchTime
+        }
+    }
+
     update(){
         if( !this.stasis ){
             this.change( this.regen * ( this.host.game.time.elapsed / 1000 ) )
+        }
+
+        if( this.switchCountdown > 0 ){
+            this.switchCountdown -= this.host.game.time.elapsed
+            if( this.switchCountdown <= 0 ){
+                this.stasis = !this.stasis
+            }
         }
     }
 }
