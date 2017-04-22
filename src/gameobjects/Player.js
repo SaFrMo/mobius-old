@@ -3,11 +3,9 @@ import Phaser from 'phaser'
 
 export default class extends Actor{
 
-    constructor( game, x, y, key, frame, weapon, pickupGroup ){
+    constructor( game, x, y, key, frame, opts ){
 
-        super( game, x, y, key, null, pickupGroup )
-
-        this.currentWeapon = weapon
+        super( game, x, y, key, null, opts )
 
         // Add controls
         this.cursors = this.game.input.keyboard.createCursorKeys()

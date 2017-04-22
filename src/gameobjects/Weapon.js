@@ -2,7 +2,7 @@ import Bullet from './Bullet'
 
 export default class {
 
-    constructor( bulletGroup, owner, weaponType = false ){
+    constructor( bulletGroup, weaponType = false ){
 
         // Weapon types
         this.STANDARD = { damage: 10, time: 750, speed: 250 } // speed = projectile speed
@@ -10,7 +10,6 @@ export default class {
         this.stats = weaponType || this.STANDARD
         this.bulletGroup = bulletGroup
         this.game = this.bulletGroup.game
-        this.owner = owner
 
     }
 

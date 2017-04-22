@@ -3,7 +3,7 @@ import Health from './components/health'
 import Pickup from './Pickup'
 
 export default class extends Phaser.Sprite{
-    constructor( game, x, y, key, frame, pickupGroup ){
+    constructor( game, x, y, key, frame, opts = {} ){
         super( game, x, y, key, frame )
 
         // Enable player physics
@@ -18,7 +18,12 @@ export default class extends Phaser.Sprite{
         this.supplies = 0
 
         // Save pickup group
-        this.pickupGroup = pickupGroup
+        this.pickupGroup = opts.pickupGroup || false
+    }
+
+    giveWeapon( weapon ){
+        this.currentWeapon = weapon
+        weapon.owner = this
     }
 
     die(){
