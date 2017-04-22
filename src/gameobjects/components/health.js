@@ -28,7 +28,7 @@ export default class {
         this.current = Math.min( this.starting, this.current )
 
         // update health bar
-        this.healthBar.width = this.host.width * this.getPercent()
+        this.healthBar.width = this.healthBg.width * this.getPercent()
     }
 
     toggle(){
@@ -44,7 +44,7 @@ export default class {
     }
 
     update(){
-        if( !this.stasis ){
+        if( !this.stasis && this.current < this.starting ){
             this.change( this.regen * ( this.host.game.time.elapsed / 1000 ) )
         }
 

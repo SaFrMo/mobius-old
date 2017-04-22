@@ -16,7 +16,15 @@ export default class extends Phaser.Sprite{
         this.health = new Health( this )
     }
 
+    die(){
+        // TODO: Drops, XP
+        this.kill()
+    }
+
     update(){
         this.health.update()
+        if( this.health.current <= 0 ){
+            this.die()
+        }
     }
 }
