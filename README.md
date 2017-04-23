@@ -21,7 +21,7 @@ Players will need to acquire materials and use them in simple Minecraft-style re
 1. ~~Mook AI~~
 1. ~~Basic Plot~~
 1. ~~Regroup~~
-1. Increase game area width past screen
+1. ~~Increase game area width past screen~~
 1. Flip player (and gravity) when looping around screen
 1. Single slow enemy
     1. Not affected by gravity

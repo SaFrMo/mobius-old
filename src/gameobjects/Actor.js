@@ -22,9 +22,6 @@ export default class extends Phaser.Sprite{
     }
 
     die(){
-        if( this.pickupGroup ){
-            this.pickupGroup.add( new Pickup( this ) )
-        }
         this.kill()
     }
 
