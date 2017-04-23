@@ -3,8 +3,7 @@ import Player from '../gameobjects/Player'
 import Enemy from '../gameobjects/Enemy'
 // import TextDisplay from '../gameobjects/TextDisplay'
 import collideActions from '../actions/collision'
-import Weapon from '../gameobjects/Weapon'
-import Shop from '../gameobjects/shop/Shop'
+// import Weapon from '../gameobjects/Weapon'
 
 export default class extends Phaser.State{
     init(){}
@@ -36,23 +35,12 @@ export default class extends Phaser.State{
 
         // Set up player
         this.player = this.actors.add(
-            new Player(
-                this.game,
-                0, 0,
-                'player',
-                null,
-                {
-                    pickupGroup: this.pickups
-                }
-            )
+            new Player( this.game, 0, 0, 'player' )
         )
-        this.player.giveWeapon( new Weapon( this.bullets ) )
 
         // Add enemy
-        const enemy = this.actors.add( new Enemy( this.game, 300, 0, 'enemy', null, {
-            pickupGroup: this.pickups
-        } ) )
-        enemy.giveWeapon( new Weapon( this.bullets ) )
+        this.actors.add( new Enemy( this.game, 300, 0, 'enemy' ) )
+        // enemy.giveWeapon( new Weapon( this.bullets ) )
 
         // Set up text display
         // this.game.add.existing( new TextDisplay( this.game, "test!" ) )
@@ -60,9 +48,6 @@ export default class extends Phaser.State{
         // Set up platformer physics
         this.game.physics.startSystem( Phaser.Physics.ARCADE )
         this.game.physics.arcade.gravity.y = 500
-
-        // Create shop
-        this.shop = this.game.add.existing( new Shop( this.game ) )
 
     }
 

@@ -11,17 +11,19 @@ export default class extends Actor{
         this.cursors = this.game.input.keyboard.createCursorKeys()
         this.jumpButton = this.game.input.keyboard.addKey( Phaser.Keyboard.SPACEBAR )
         this.toggleButton = this.game.input.keyboard.addKey( Phaser.Keyboard.TAB )
-        this.fireButton = this.game.input.keyboard.addKey( Phaser.Keyboard.SHIFT )
+        // this.fireButton = this.game.input.keyboard.addKey( Phaser.Keyboard.SHIFT )
 
         // Set movement params
         this.xSpeed = 350
-        this.jump = -250
+        this.jumpForce = -250
 
         // Toggle health state
         this.toggleButton.onUp.add( function(){ this.health.toggle() }, this )
 
-        // Fire weapon
-        this.fireButton.onUp.add( function(){ this.currentWeapon.fire( this.direction ) }, this )
+        // Jump
+        this.jumpButton.onDown.add( function(){ this.jump() }, this )
+        this.totalJumps = 2
+        this.currentJump = 0
 
         // Add supplies readout
         this.suppliesBg = this.game.add.graphics( 0, 0 )
@@ -37,14 +39,20 @@ export default class extends Actor{
 
     }
 
-    changeSupplies( amount ){
-        this.supplies += amount
-        this.suppliesText.text = '$' + this.supplies
+    jump(){
+        if( this.currentJump < this.totalJumps ){
+            this.body.velocity.y = this.jumpForce
+            this.currentJump++
+        }
     }
 
     update(){
 
         super.update()
+
+        if( this.body.onFloor() ){
+            this.currentJump = 0
+        }
 
         // horizontal movement
         if( this.cursors.left.isDown ){
@@ -55,12 +63,6 @@ export default class extends Actor{
             this.direction = 1
         } else {
             this.body.velocity.x = 0
-        }
-
-        // jump
-        if( this.jumpButton.isDown &&
-            this.body.onFloor() ){
-            this.body.velocity.y = this.jump
         }
 
     }

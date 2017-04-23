@@ -17,13 +17,8 @@ export default class extends Phaser.Sprite{
         this.health = new Health( this )
         this.supplies = 0
 
-        // Save pickup group
-        this.pickupGroup = opts.pickupGroup || false
-    }
-
-    giveWeapon( weapon ){
-        this.currentWeapon = weapon
-        weapon.owner = this
+        // Shortcut to current state object
+        this.state = this.game.state.states[this.game.state.current]
     }
 
     die(){

@@ -19,8 +19,11 @@ Players will need to acquire materials and use them in simple Minecraft-style re
 1. ~~Regroup~~
 1. ~~Currency Pickups~~
 1. ~~Mook AI~~
-1. Shop
 1. ~~Basic Plot~~
 1. Regroup
 1. Increase game area width past screen
 1. Flip player (and gravity) when looping around screen
+1. Single slow enemy
+    1. Not affected by gravity
+    1. Moves slowly toward closest pickup
+1. Collect scrap and bring to location
