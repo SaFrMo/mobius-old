@@ -49,6 +49,10 @@ export default class extends Phaser.State{
         this.game.physics.startSystem( Phaser.Physics.ARCADE )
         this.game.physics.arcade.gravity.y = 500
 
+        // Set up camera
+        this.game.camera.follow( this.player )
+        this.game.camera.deadzone = new Phaser.Rectangle( this.game.width * 0.25, 0, this.game.width * 0.5, this.game.height )
+
     }
 
     update(){
